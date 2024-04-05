@@ -71,7 +71,7 @@ public class ApiRestTest {
     }
 
     @Test(description = "Verify post is updated")
-    public void testUpdPost() throws IOException, InterruptedException {
+    public void testUpdsPost() throws IOException, InterruptedException {
         int postId = apiService.createPost().getId();
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = apiService.createRequest("posts/" + postId, apiService.getPostBody(), HttpMethod.PUT);
