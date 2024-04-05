@@ -10,7 +10,7 @@
                     <include name="testDeleteUser"/>
                     <include name="testCreatePost"/>
                     <include name="testUpdatePost"/>
-
+                    <include name="testUpdPost"/>
                 </methods>
             </class>
         </classes>
