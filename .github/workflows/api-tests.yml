@@ -2,15 +2,11 @@ name: API Tests
 
 on:
   push:
-    branches:
-      - main
-        - testMultipleBranch
+    branches: [ testMultipleBranch ]
     paths-ignore:
       - '**/README.md'
   pull_request:
-    branches:
-      - main
-        - testMultipleBranch
+    branches: [ testMultipleBranch ]
     paths-ignore:
       - '**/README.md'
 
