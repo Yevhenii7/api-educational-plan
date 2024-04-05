@@ -70,6 +70,15 @@ public class ApiRestTest {
         Assert.assertEquals(response.statusCode(), HttpStatus.SC_OK, "Post updated status code is not match");
     }
 
+    @Test(description = "Verify post is updated")
+    public void testUpdPost() throws IOException, InterruptedException {
+        int postId = apiService.createPost().getId();
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = apiService.createRequest("posts/" + postId, apiService.getPostBody(), HttpMethod.PUT);
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        Assert.assertEquals(response.statusCode(), HttpStatus.SC_OK, "Post updated status code is not match");
+    }
+
     private void assertUserEquality(User actualUser, User expectedUser) {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(actualUser.getName(), expectedUser.getName(), "User name is not correct!");
