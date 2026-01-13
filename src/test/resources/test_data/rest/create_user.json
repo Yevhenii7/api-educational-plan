@@ -1,0 +1,6 @@
+{
+  "name": "=userName",
+  "email": "=userEmail",
+  "gender": "=userGender",
+  "status": "=userStatus"
+}

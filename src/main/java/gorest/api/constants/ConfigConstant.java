@@ -9,4 +9,7 @@ public class ConfigConstant {
     public static final String DEFAULT_API_URL = R.CONFIG.getString("api_url");
     public static final String API_ACCESS_TOKEN = R.CONFIG.getString("access_token");
 
+    public static final String GRAPHQL_URL = R.CONFIG.getString("graphql_url");
+
+
 }

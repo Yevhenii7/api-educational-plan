@@ -16,5 +16,8 @@ public class JsonConstant {
 
     public static final String RESPOND_SCHEMA_POSTS = ConfigConstant.BASE_PATH + "/response_schemas/post/posts.json";
 
+    public static final String CREATE_USER_RESPONSE = "$.data.createUser.user";
+    public static final String CREATE_POST_RESPONSE = "$.data.createPost.post";
+    public static final String USER_BY_ID_RESPONSE = "$.data.user";
 
 }

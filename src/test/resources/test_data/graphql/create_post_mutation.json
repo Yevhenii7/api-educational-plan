@@ -1,0 +1,5 @@
+{
+  "query": "mutation CreatePost {\n  createPost(input: { userId: =postUserId, title: \"=postTitle\", body: \"=postBody\" }) {\n    post {\n      id\n      title\n      body\n      userId\n    }\n  }\n}",
+  "operationName": "CreatePost",
+  "variables": {}
+}

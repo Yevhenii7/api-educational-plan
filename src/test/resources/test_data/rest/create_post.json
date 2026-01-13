@@ -1,0 +1,5 @@
+{
+  "user_id": "=postUserId",
+  "title": "=postTitle",
+  "body": "=postBody"
+}

@@ -2,46 +2,53 @@ package gorest.api.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-public class R {
+public final class R {
 
-        private static final Logger LOGGER = LogManager.getLogger(R.class);
-        private static final String RESOURCES_PATH = "src/main/resources/";
-        private static final String CONFIG_PATH = RESOURCES_PATH + "config.properties";
+    private static final Logger LOGGER = LogManager.getLogger(R.class);
 
-        private R() {
-        }
+    private R() {}
 
-        private static Object getFromProperty(String path, String key) {
-            Properties properties = loadProperties(path);
-            return properties != null ? properties.get(key) : null;
-        }
+    public static class CONFIG {
+        private static final String CONFIG_FILE = "config.properties";
+        private static final Properties PROPERTIES = loadProperties();
 
-        private static Properties loadProperties(String filePath) {
-            Properties properties = new Properties();
-            try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
-                properties.load(fileInputStream);
-                return properties;
+        private CONFIG() {}
+
+        private static Properties loadProperties() {
+            Properties props = new Properties();
+            try (InputStream input = R.class.getClassLoader().getResourceAsStream(CONFIG_FILE)) {
+                if (input == null) {
+                    LOGGER.error("Could not find config file: " + CONFIG_FILE);
+                    return props;
+                }
+                props.load(input);
             } catch (IOException e) {
-                LOGGER.error("The problem occurred while loading properties");
-                return null;
+                LOGGER.error("Error loading config properties", e);
+            }
+            return props;
+        }
+
+        public static String getString(String key) {
+            return PROPERTIES.getProperty(key);
+        }
+
+        public static int getInt(String key, int defaultValue) {
+            try {
+                return Integer.parseInt(PROPERTIES.getProperty(key));
+            } catch (NumberFormatException e) {
+                LOGGER.warn("Invalid int for key: " + key);
+                return defaultValue;
             }
         }
 
-        public static class CONFIG {
-
-            private CONFIG() {
-            }
-
-            public static Object get(String key) {
-                return getFromProperty(CONFIG_PATH, key);
-            }
-
-            public static String getString(String key) {
-                return (String) get(key);
-            }
+        public static boolean getBoolean(String key, boolean defaultValue) {
+            String val = PROPERTIES.getProperty(key);
+            return val != null ? Boolean.parseBoolean(val) : defaultValue;
         }
+    }
 }

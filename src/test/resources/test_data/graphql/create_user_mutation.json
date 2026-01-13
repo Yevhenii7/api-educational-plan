@@ -1,0 +1,5 @@
+{
+  "query": "mutation CreateUser {\n  createUser(\n    input: {\n      name: \"=userName\"\n      gender: \"=userGender\"\n      status: \"=userStatus\"\n      email: \"=userEmail\"\n    }\n  ) {\n    user {\n      email\n      gender\n      id\n      name\n      status\n    }\n  }\n}",
+  "operationName": "CreateUser",
+  "variables": {}
+}
